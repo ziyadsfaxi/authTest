@@ -50,7 +50,9 @@
 
                             <a class="btn btn-small btn-info" href="{{ route('users.edit', $value->id) }}">Edit</a>
 
-                            <a class="btn btn-small btn-danger" href="{{ URL::to('users/' . $value->id . '/edit') }}">Edit</a>
+                            {{ Form::open(array('route' => ['users.destroy', $value->id], 'method' => 'DELETE', 'class' => 'pull-right')) }}
+                                {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
+                            {{ Form::close() }}
                         </td>
                     </tr>
                 @endforeach
