@@ -1,54 +1,44 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>{{ $user->name }}</title>
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-    </head>
-    <body>
-        <div class="container">
+@extends('layout')
 
-            <nav class="navbar navbar-inverse">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="{{ route('users.index') }}">Users</a>
-                </div>
-            </nav>
+@section('title', "Edit $user->name")
 
-            <h1>Edit {{ $user->name }}</h1>
+@section('content')
 
-            <!-- if there are creation errors, they will show here -->
-            {{ Html::ul($errors->all()) }}
+    <h1>Edit {{ $user->name }}</h1>
 
-            {{ Form::open(['route' => ['users.update', $user->id], 'method' => 'PUT']) }}
+    <!-- if there are creation errors, they will show here -->
+    {{ Html::ul($errors->all()) }}
 
-                <div class="form-group">
-                    {{ Form::label('name', 'Name') }}
-                    {{ Form::text('name', $user->name, ['class' => 'form-control']) }}
-                </div>
+    {{ Form::open(['route' => ['users.update', $user->id], 'method' => 'PUT']) }}
 
-                <div class="form-group">
-                    {{ Form::label('email', 'Email') }}
-                    {{ Form::email('email', $user->email, ['class' => 'form-control']) }}
-                </div>
-
-                <div class="form-group">
-                    {{ Form::label('phone', 'Phone') }}
-                    {{ Form::text('phone', $user->phone, ['class' => 'form-control']) }}
-                </div>
-
-                <div class="form-group">
-                    {{ Form::label('password', 'Password') }}
-                    {{ Form::password('password', null, ['class' => 'form-control']) }}
-                </div>
-
-                <div class="form-group">
-                    {{ Form::label('password_confirm', 'Password Confirm') }}
-                    {{ Form::password('password_confirm', null, ['class' => 'form-control']) }}
-                </div>
-
-                {{ Form::submit('Update!', array('class' => 'btn btn-primary')) }}
-
-            {{ Form::close() }}
-
+        <div class="form-group">
+            {{ Form::label('name', 'Name') }}
+            {{ Form::text('name', $user->name, ['class' => 'form-control']) }}
         </div>
-    </body>
-</html>
+
+        <div class="form-group">
+            {{ Form::label('email', 'Email') }}
+            {{ Form::email('email', $user->email, ['class' => 'form-control']) }}
+        </div>
+
+        <div class="form-group">
+            {{ Form::label('phone', 'Phone') }}
+            {{ Form::text('phone', $user->phone, ['class' => 'form-control']) }}
+        </div>
+
+        <div class="form-group">
+            {{ Form::label('password', 'Password') }}
+            {{ Form::password('password', null, ['class' => 'form-control']) }}
+        </div>
+
+        <div class="form-group">
+            {{ Form::label('password_confirm', 'Password Confirm') }}
+            {{ Form::password('password_confirm', null, ['class' => 'form-control']) }}
+        </div>
+
+        {{ Form::submit('Update!', array('class' => 'btn btn-primary')) }}
+
+    {{ Form::close() }}
+
+@endsection
+

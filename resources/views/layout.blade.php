@@ -7,6 +7,12 @@
     <body>
         <div class="container">
 
+            <nav class="navbar navbar-inverse">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="{{ route('users.index') }}">Users</a>
+                </div>
+            </nav>
+
             @if (Session::has('message'))
                 <div class="alert alert-info">{{ Session::get('message') }}</div>
             @endif
@@ -16,5 +22,9 @@
             </div>
 
         </div>
+
+
+        <hr>
+        <footer class="text-center">All Copy rights reserved &copy;</footer>
     </body>
 </html>
