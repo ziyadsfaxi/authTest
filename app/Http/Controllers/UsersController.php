@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use View;
 
 class UsersController extends Controller
 {
@@ -15,6 +16,9 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::all();
+
+        return View::make('users.index')
+            ->with('users', $users);
     }
 
     /**
