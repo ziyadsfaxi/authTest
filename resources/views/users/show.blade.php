@@ -25,7 +25,7 @@
             </div>
 
 
-            <a href="{{ route(users.edit) }}"></a>
+            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary">Edit User</a>
 
         </div>
     </body>
