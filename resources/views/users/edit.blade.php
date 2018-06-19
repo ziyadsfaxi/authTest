@@ -22,17 +22,17 @@
 
                 <div class="form-group">
                     {{ Form::label('name', 'Name') }}
-                    {{ Form::text('name', null, ['class' => 'form-control']) }}
+                    {{ Form::text('name', $user->name, ['class' => 'form-control']) }}
                 </div>
 
                 <div class="form-group">
                     {{ Form::label('email', 'Email') }}
-                    {{ Form::email('email', null, ['class' => 'form-control']) }}
+                    {{ Form::email('email', $user->email, ['class' => 'form-control']) }}
                 </div>
 
                 <div class="form-group">
                     {{ Form::label('phone', 'Phone') }}
-                    {{ Form::text('phone', null, ['class' => 'form-control']) }}
+                    {{ Form::text('phone', $user->phone, ['class' => 'form-control']) }}
                 </div>
 
                 <div class="form-group">
