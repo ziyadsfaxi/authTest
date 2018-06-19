@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use App\User;
 use View;
 
@@ -28,7 +32,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create');
     }
 
     /**
@@ -39,7 +43,32 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = array(
+            'name'       => 'required',
+            'email'      => 'required|unique:users|email',
+            'phone' => 'required',
+            'password' => 'required',
+            'password_confirm' => 'required|same:password'
+        );
+        $validator = Validator::make(Input::all(), $rules);
+
+        if ($validator->fails()) {
+            return Redirect::to('users/create')
+                ->withErrors($validator)
+                ->withInput(Input::except('password'));
+        }
+
+        // store
+        $user = new User;
+        $user->name       = Input::get('name');
+        $user->email      = Input::get('email');
+        $user->phone = Input::get('phone');
+        $user->password = Input::get('password');
+        $user->save();
+
+        // redirect
+        Session::flash('message', 'Successfully created user!');
+        return Redirect::to('users');
     }
 
     /**
