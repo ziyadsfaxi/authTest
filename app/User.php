@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Eloquent;
 
 class User extends Eloquent
 {
