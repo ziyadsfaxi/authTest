@@ -21,13 +21,15 @@
         @foreach($users as $key => $value)
             <tr>
                 <td>{{ $value->id }}</td>
-                <td>{{ $value->name }}</td>
+                <td>
+                    <a href="{{ route('users.show', $value->id) }}">
+                        {{ $value->name }}
+                    </a>
+                </td>
                 <td>{{ $value->email }}</td>
                 <td>{{ $value->phone }}</td>
 
                 <td>
-                    <a class="btn btn-small btn-success" href="{{ route('users.show', $value->id) }}">Show</a>
-
                     <a class="btn btn-small btn-info" href="{{ route('users.edit', $value->id) }}">Edit</a>
 
                     {{ Form::open(array('route' => ['users.destroy', $value->id], 'method' => 'DELETE', 'class' => 'pull-right')) }}
