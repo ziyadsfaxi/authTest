@@ -105,7 +105,30 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = array(
+            'name'       => 'required',
+            'email'      => 'required|unique:users|email',
+            'phone' => 'required',
+            'password' => 'required',
+            'password_confirm' => 'required|same:password'
+        );
+        $validator = Validator::make(Input::all(), $rules);
+
+        if ($validator->fails()) {
+            return Redirect::to('users/' . $id . '/edit')
+                ->withErrors($validator)
+                ->withInput(Input::except('password'));
+        }
+
+        $user = User::find($id);
+        $user->name = Input::get('name');
+        $user->email = Input::get('email');
+        $user->phone = Input::get('phone');
+        $user->password = Input::get('password');
+        $user->save();
+
+        Session::flash('message', "Successfully Updated $user->name");
+        return Redirect::to('users');
     }
 
     /**
