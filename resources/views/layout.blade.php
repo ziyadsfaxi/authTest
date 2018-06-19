@@ -3,15 +3,16 @@
     <head>
         <title>@yield('title')</title>
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{ route('users.index') }}">Users</a>
+            </div>
+        </nav>
         <div class="container">
 
-            <nav class="navbar navbar-inverse">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="{{ route('users.index') }}">Users</a>
-                </div>
-            </nav>
 
             @if (Session::has('message'))
                 <div class="alert alert-info">{{ Session::get('message') }}</div>
